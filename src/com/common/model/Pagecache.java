@@ -15,7 +15,7 @@ public class Pagecache extends BasePagecache<Pagecache> {
 		String sql = "SELECT * FROM `pagecache` where `status` = 0 ORDER BY createTime DESC limit ?";
 		return dao.find(sql,maxNum);
 	}
-	public static Pagecache findPlayerByPlayerName(String playerName){
+	public Pagecache findPlayerByPSName(String playerName,String serverName){
 		return dao.findFirst("SELECT * FROM `pagecache` where playerName = ?",playerName);
 	}
 }

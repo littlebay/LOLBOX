@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.common.constant.GlobalStaticVar;
 import com.common.model.Pagecache;
 import com.jfinal.kit.HttpKit;
 

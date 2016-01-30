@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.common.constant.CacheStatus;
 import com.common.constant.GlobalStaticVar;
 import com.common.model.Gamedetails;
 import com.common.model.Gamematch;
@@ -88,7 +87,7 @@ public class MatchSpiderThread extends Thread {
 					Integer minionskilled = Integer.parseInt(findgamedetail
 							.group(5));
 					String minionsKDA = findgamedetail.group(6);
-					
+
 					Matcher findgamedetail1 = Pattern
 							.compile(
 									"<p class=\"tip-user-name\">([\\s\\S]+?)</p>[\\s\\S]+?<img src=\"(.+?)_[\\s\\S]+?<span class=\"tip-tip-user-name2\">(.+?)</span>[\\s\\S]+?<img src=\"([\\s\\S]+?)\"/>[\\s\\S]+?<img src=\"([\\s\\S]+?)\"/>[\\s\\S]+?补兵:</td>[\\s\\S]+?<td>(\\d+)</td>[\\s\\S]+?<td>(\\d+)</td>[\\s\\S]+?<td>(\\d+)</td>[\\s\\S]+?<td>(\\d+)</td>[\\s\\S]+?<td>(\\d+)</td>[\\s\\S]+?<td>(\\d+)</td>[\\s\\S]+?<td>(\\d+)</td>[\\s\\S]+?<td>(\\d+)</td>[\\s\\S]+?<td>(\\d+)</td>[\\s\\S]+?<td>(\\d+)</td>[\\s\\S]+?<td>(\\d+)</td>[\\s\\S]+?<td>(\\d+)</td>[\\s\\S]+?</span>[\\s\\S]+?(\\d+)[\\s\\S]+?</p>[\\s\\S]+?</span>[\\s\\S]+?(\\d+)[\\s\\S]+?</p>[\\s\\S]+?</span>[\\s\\S]+?(\\d+)[\\s\\S]+?</p>[\\s\\S]+?</span>[\\s\\S]+?(\\d+)[\\s\\S]+?</p>[\\s\\S]+?")
@@ -96,7 +95,8 @@ public class MatchSpiderThread extends Thread {
 					while (findgamedetail1.find()) {
 
 						String username1 = findgamedetail1.group(1);
-						String confirm2 = findgamedetail1.group(2).replace("\n", "");
+						String confirm2 = findgamedetail1.group(2).replace(
+								"\n", "");
 						String summonerskill1 = findgamedetail1.group(4);
 						String summonerskill2 = findgamedetail1.group(5);
 						String championused = findgamedetail1.group(3);
@@ -134,10 +134,11 @@ public class MatchSpiderThread extends Thread {
 								.group(21));
 
 						String flo = floor.get(mark);
-						GlobalStaticVar.BusinessLog.info("1:"+confirm1);
-						GlobalStaticVar.BusinessLog.info("2:"+confirm2);
+						GlobalStaticVar.BusinessLog.info(username);
+						GlobalStaticVar.BusinessLog.info(serverName);
+						GlobalStaticVar.BusinessLog.info(matchId);
 						if (null == Gamedetails.dao.findByPSName(username,
-								serverName, matchId)
+								serverName,matchId)
 								&& confirm1.equals(confirm2)) {
 							Gamedetails gamedetails = new Gamedetails();
 							gamedetails.setMatchId(matchId);

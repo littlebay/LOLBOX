@@ -12,7 +12,7 @@ public class GlobalStaticVar {
 	public static ConcurrentLinkedDeque<String> usernameSet = new ConcurrentLinkedDeque<String>();
 	
 	public static ExecutorService threadPool = Executors.newFixedThreadPool(20);
-	public static ExecutorService exthreadPool = Executors.newFixedThreadPool(100);
+	public static ExecutorService exthreadPool = Executors.newFixedThreadPool(200);
 	
 	
 }
