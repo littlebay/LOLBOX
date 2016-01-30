@@ -1,8 +1,6 @@
 package com.task.spider.thread;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -28,14 +26,19 @@ public class PageThread extends Thread {
 		data.put("serverName", serverName);
 		data.put("playerName", playerName);
 		String response = HttpKit.get(url, data);
+		
 		Matcher matcher = Pattern.compile("<li id=\"cli(\\d+)\">").matcher(response);
-		List<String> matchIds = new ArrayList<String>();
-		while(matcher.find()){
-			String matchId = matcher.group().replace("<li id=\"cli", "").replace("\">", "");//.substring(beginIndex, endIndex);
-			matchIds.add(matchId);
+		Matcher matcher1=Pattern.compile("<span class=\"game\">.+?</span>&nbsp;(.+?)</p>").matcher(response);
+		Map<String,String> matchIds = new HashMap<String,String>();
+		while(matcher.find()&&matcher1.find()){
+			String matchId = matcher.group(1);//.substring(beginIndex, endIndex);
+			String date=matcher1.group(1);
+			matchIds.put(matchId, date);
 		}
-		for (String matchId : matchIds) {
-			GlobalStaticVar.exthreadPool.execute(new PageCacheThread(matchId, serverName, playerName));
+		
+		for (String matchId : matchIds.keySet()) {
+			String date =matchIds.get(matchId);
+			GlobalStaticVar.exthreadPool.execute(new MatchSpiderThread(matchId,date,serverName, playerName));
 		}
 		
 	}

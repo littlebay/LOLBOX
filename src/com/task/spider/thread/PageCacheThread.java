@@ -37,7 +37,7 @@ public class PageCacheThread extends Thread{
 		while(matcher.find()){
 			String[] usernames = matcher.group().replace("<span id=\"playerNames\">", "").replace("</span>", "").split("\\|");
 			for (String username : usernames) {
-				if(null==Pagecache.dao.findPlayerByPlayerName(username)){
+				if(null==Pagecache.dao.findPlayerByPSName(username,serverName)){
 					Pagecache pagecache = new Pagecache();
 					pagecache.setPlayerName(username);
 					pagecache.setServerName(serverName);

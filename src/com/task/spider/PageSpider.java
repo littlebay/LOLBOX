@@ -1,7 +1,6 @@
 package com.task.spider;
 
 import java.util.List;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -11,8 +10,6 @@ import org.apache.log4j.Logger;
 import com.common.constant.CacheStatus;
 import com.common.constant.GlobalStaticVar;
 import com.common.model.Pagecache;
-import com.jfinal.aop.Duang;
-import com.jfinal.plugin.activerecord.tx.Tx;
 import com.task.spider.thread.PageThread;
 
 public class PageSpider {
